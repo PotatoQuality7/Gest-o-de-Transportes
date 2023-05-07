@@ -1,0 +1,15 @@
+{
+  "name": "newleaf",
+  "version": "1.0.0",
+  "description": "Base de dados.",
+  "main": "banco.js",
+  "scripts": {
+    "test": "select * from GestaoTransportes.Usuarios;"
+  },
+  "author": "Timana",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "jsdom": "^22.0.0"
+  }
+}
