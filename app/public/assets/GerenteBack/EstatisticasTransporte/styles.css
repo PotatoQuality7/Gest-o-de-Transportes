@@ -1,0 +1,7 @@
+#papel, #papel2, #bitao {
+  display: inline-block;
+  /*width: 600px;
+  height: 400px;*/
+  background: orange;
+  border: solid black 2px;
+}

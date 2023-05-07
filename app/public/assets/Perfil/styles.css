@@ -1,0 +1,73 @@
+nav {
+  position: absolute;
+  background: none;
+  top: 0px;
+  left: -29%;
+  height: 100%;
+  width: 30%;
+}
+
+nav:hover {
+  left: 0px;
+  background: orange;
+}
+
+.formulario {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 50px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 10%;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  position: relative;
+  left: 590px;
+}
+
+body {
+  margin-bottom: 20px;
+  background-color: #6e65be;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+button[type="button"] {
+  background-color: #2f09bb;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  left: 150px;
+}
+
+button[type="button"]:hover {
+  background-color: #000000;
+}
+#btnEditar{
+  position:relative;
+  left: 0px;
+}
+
+#btnSenha{
+  left:950px;
+}

@@ -1,0 +1,13 @@
+nav {
+  position: absolute;
+  background: none;
+  top: 0px;
+  left: -29%;
+  height: 100%;
+  width: 30%;
+}
+
+nav:hover {
+  left: 0px;
+  background: orange;
+}
