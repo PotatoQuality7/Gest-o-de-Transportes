@@ -48,3 +48,19 @@ nav ul li a{
 nav ul li a:hover{
     color: rgb(5, 129, 212);
 }
+
+#sair {
+  background: orange;
+  color: black;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 30px;
+  height: 30px;
+}
+
+#papel {
+  display: inline-block;
+  /*background: rgb(0,80,80);*/
+  background: rgb(255,255,255);
+}

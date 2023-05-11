@@ -3,20 +3,28 @@
   <head>
     <title>Tela de Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/assets/Login/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/Login/styles.css">
   </head>
   <body>
     <div class="bg-image"></div>
     <div class="login-box">
-      <h2>Login</h2>
-      <form>
+      <h1>Login</h1>
+      <form action="/login" method="POST">
         <label for="email">E-mail:</label>
         <input type="email" id="email" name="email" required>
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required>
-        <input id="algo" type="submit" value="Entrar">
-        <a href="/assets/Cadastro/index.html">Cadastrar-me</a>
+
+        <input type="radio" id="senha" name="metodo" value="0" checked>
+        <label for="0">Senha</label>
+        <input type="radio" id="matricula" name="metodo" value="1">
+        <label for="1">Matricula</label>
+
+        <label for="token">Senha:</label>
+        <input type="token" id="token" name="token" required>
+        <input id="login" type="submit" value="Entrar" onclick="activate()">
+        <a href="../index.html">Cadastrar-me</a>
       </form>
+
     </div>
+    <script src="assets/Login/script.js"></script>
   </body>
 </html>

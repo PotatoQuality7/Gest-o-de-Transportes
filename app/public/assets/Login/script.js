@@ -1,13 +1,20 @@
-if (conta == null) {
-    var conta;
-    conta = 1;
+let prompt;
 
-    const login = document.getElementById("login");
-    login.addEventListener("click", function() {
-      switch (conta) {
-        case 0: window.location = '../TelaAdministrador/index.html'; break;
-        case 1: window.location = '../TelaPassageiro/index.html'; break;
-        case 2: window.location = '../TelaGerente/index.html'; break;
-      }
-    });
+function activate() {
+	alert("ativou");
+	const dados = require("./dados");
+	dados.done = false;
+	prompt = setInterval(reencaminharUsuario,500);
+	alert("ativou");
+}
+
+function reencaminharUsuario() {
+	const dados = require("./dados");
+        alert("Testing");
+	if (dados.done == true) {
+			alert(dados.usuario[0]);
+			clearInterval(prompt);
+			window.location = dados.link;
+	}
+
 }

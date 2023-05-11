@@ -7,6 +7,26 @@ const transporte = {
   codGerente: 2555,
   rota: ["Museu-Laulane","Baixa-Magoanine","A. Voador-Magoanine"],
 };
+
+const usuario = {
+  codigo: 0,
+  nome: "",
+  email: "",
+  estatuto: "",
+  posicao: 0,
+  senha: "",
+}
+
+const transportes = [{
+  codGerente: 0,
+  matricula: "",
+  tipo: "",
+  lotacao: 0,
+  posicao: 0,
+  velocidade: 0,
+  cor: "",
+}];
+
 const canvas = document.getElementById("papel");
 const width = canvas.width = window.innerWidth-50;
 let pos = 60;
