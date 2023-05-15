@@ -1,0 +1,52 @@
+body{
+  background-color: rgb(41, 170, 106);
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 100px;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+    background-color: #fff;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  div {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  button[type="submit"] {
+    background-color: #4c66af;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #3e6e8e;
+  }
