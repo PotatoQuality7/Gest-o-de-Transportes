@@ -1,31 +1,7 @@
-const gerente = {
-  numCarros: 3,
-  codGerente: 2555,
-};
-const transporte = {
-  matricula: ["MMX-932-MC","MAX-163-MP","MCE-524-MC"],
-  codGerente: 2555,
-  rota: ["Museu-Laulane","Baixa-Magoanine","A. Voador-Magoanine"],
-};
+let usuario = JSON.parse(sessionStorage.getItem("usuario"));
+let transportes = JSON.parse(sessionStorage.getItem("transportes"));
 
-const usuario = {
-  codigo: 0,
-  nome: "",
-  email: "",
-  estatuto: "",
-  posicao: 0,
-  senha: "",
-}
-
-const transportes = [{
-  codGerente: 0,
-  matricula: "",
-  tipo: "",
-  lotacao: 0,
-  posicao: 0,
-  velocidade: 0,
-  cor: "",
-}];
+let visual = false;
 
 const canvas = document.getElementById("papel");
 const width = canvas.width = window.innerWidth-50;
@@ -33,41 +9,70 @@ let pos = 60;
 canvas.height = ((420+pos)*gerente.numCarros);
 const ctx = canvas.getContext("2d");
 
+const trocar = document.getElementById("trocar");
+trocar.addEventListener("click", function() {
+	visual = !visual;
+	if (visual == false) {
+	    canvas.style.display = "none";
+	    textualizar();
+	}
+	else {
+	  canvas.style.display = "inline-block";
+	  visualizar();
+	}
+});
+
 const height = 420;
 const max = 17;//6-22
 const c = 10;
-let linhas = [];
-for (let num = 0; num < gerente.numCarros; num++) {
-    ctx.fillStyle = "rgb(0,0,0)";
-    ctx.font = "24px Arial";
-    ctx.fillText(transporte.rota[num]+": "+transporte.matricula[0]+", 29/04/2023",0,pos-18);
-    ctx.fillStyle = "rgb(254,164,0)";
-    ctx.fillRect(0,pos,width,height);
-    ctx.fillStyle = "rgb(255,255,255)";
-    ctx.fillRect(0,pos+height-20,width,20);
-    ctx.fillStyle = "rgb(0,0,0)";
-    for (let i = 1; i < (height/10)-1; i += 2) {
-        for (let j = 1; j <= max; j++) {
-             ctx.fillRect(j*(width/(max+1)),pos+(height-22)-(10*i),2,10);
-             ctx.font = "12px Arial";
-             ctx.fillText((j+5)+"H",(j*(width/(max+1)))-8,pos+height-5);
-        }
-    }
-    ctx.strokeStyle = "rgb(0,0,0)";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(1,pos,width-1,height);
-    ctx.fillStyle = '#0af';
-    for (let i = 1; i <= max; i++) {
-         let j = (height-20)-((height-20)*Math.random());
-         ctx.beginPath();
-         ctx.ellipse(i*(width/(max+1))+2,pos+height-20-j,c,c,0,0,2*Math.PI);
-         ctx.fill();
-         ctx.closePath();
-         linhas.push(Math.trunc((i*(width/(max+1))+10)));
-    }
-    pos += height+60;
+
+function textualizar() {
+	let lista;
+	for (let i = 0; i < transportes.length; i++) {
+	    if (transportes[i].codGerente != usuario.codigo || transportes[i].estado == 'Fantasma')
+		lista += transportes[i].matricula+" | "+transportes[i].tituloRota+" | "+transportes[i].codRota+" | "+transportes[i].lotacao+" | DELETAR\n";
+	}
+	alert(lista);
 }
 
+function visualizar() {
+
+	let linhas = [];
+
+	for (let num = 0; num < transportes.length; num++) {
+	    if (transportes[num].codGerente != usuario.codigo || transportes[num].estado == 'Fantasma')
+		continue;
+	    ctx.fillStyle = "rgb(0,0,0)";
+	    ctx.font = "24px Arial";
+	    ctx.fillText(transportes.tituloRota[num]+": "+transportes.matricula[0]+", 29/04/2023",0,pos-18);
+	    ctx.fillStyle = "rgb(254,164,0)";
+	    ctx.fillRect(0,pos,width,height);
+	    ctx.fillStyle = "rgb(255,255,255)";
+	    ctx.fillRect(0,pos+height-20,width,20);
+	    ctx.fillStyle = "rgb(0,0,0)";
+	    for (let i = 1; i < (height/10)-1; i += 2) {
+	        for (let j = 1; j <= max; j++) {
+	             ctx.fillRect(j*(width/(max+1)),pos+(height-22)-(10*i),2,10);
+	             ctx.font = "12px Arial";
+	             ctx.fillText((j+5)+"H",(j*(width/(max+1)))-8,pos+height-5);
+	        }
+	    }
+	    ctx.strokeStyle = "rgb(0,0,0)";
+	    ctx.lineWidth = 2;
+	    ctx.strokeRect(1,pos,width-1,height);
+	    ctx.fillStyle = '#0af';
+	    for (let i = 1; i <= max; i++) {
+	         let j = (height-20)-((height-20)*Math.random());
+	         ctx.beginPath();
+	         ctx.ellipse(i*(width/(max+1))+2,pos+height-20-j,c,c,0,0,2*Math.PI);
+	         ctx.fill();
+	         ctx.closePath();
+	         linhas.push(Math.trunc((i*(width/(max+1))+10)));
+	    }
+	    pos += height+60;
+	}
+
+}
 canvas.addEventListener("click",mousePosition);
 function mousePosition(event) {
   let temp = "";
@@ -81,7 +86,7 @@ function mousePosition(event) {
 
 function associarCor(i,cor) {
   for (let num = i; num >= 0; num--)
-      if (i != num && (transporte.rota[i] == transporte.rota[num]))
+      if (i != num && (transportes.codRota[i] == transportes.codRota[num]))
           return cor[num];
   return 'rgb('+(Math.random()*255)+','+(Math.random()*255)+','+(Math.random()*255)+')';
 }

@@ -1,3 +1,14 @@
+<?php
+
+$user = 'Timana';
+$pass = 'Timana';
+$db = 'GestaoTransportes';
+$dbc = new mysqli('localhost',$user,$pass,$db);
+
+$sql
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +24,7 @@
       <p>Muchas tardes madame</p>
     </canvas>
     <h1>Estatisticas</h1>
-    <script src="../../Login/script.js"></script>
+    <button id="trocarModo">Trocar Modo</button>
     <script src="script.js"></script>
   </body>
 </html>

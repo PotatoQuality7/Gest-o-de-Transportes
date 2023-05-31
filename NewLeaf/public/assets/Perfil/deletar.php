@@ -14,6 +14,13 @@ mysqli_query($dbc,$sql);
 $sql = "DELETE * FROM Preferencias WHERE CodUsuario=".$_SESSION['codUsuario'];
 mysqli_query($dbc,$sql);
 
+$sql = "SELECT Estatuto FROM Usuarios WHERE CodUsuario=".$_SESSION['codUsuario'];
+$result = mysqli_query($dbc,$sql);
+
+if ($result['Estatuto'] == 'Gerente') {
+    $sql = "UPDATE Transportes SET Estado='Fantasma' WHERE CodGerente=".$_SESSION['codUsuario'];
+    mysqli_query($dbc,$sql);
+}
 $_SESSION['deletado'] = 1;
 
 ?>

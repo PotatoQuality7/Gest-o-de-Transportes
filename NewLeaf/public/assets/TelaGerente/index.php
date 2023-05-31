@@ -9,7 +9,6 @@
 </head>
 <body>
     <header>
-    </div>
     <nav>
       <ul>
         <li><a href="../Perfil/index.php">Perfil</a></li>

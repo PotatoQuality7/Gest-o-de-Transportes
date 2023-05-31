@@ -17,10 +17,9 @@ if ($_POST['email'] != '' AND $_POST['token'] != '') {
     $token = $_POST['token'];
     $metodo = $_POST['metodo'];
     if ($metodo == 0)
-        $sql = "SELECT u.CodUsuario FROM Usuarios u INNER JOIN Email e on u.CodUsuario=e.CodUsuario WHERE Email=? AND Fim IS NULL AND Senha=?";
+        $sql = "SELECT u.CodUsuario FROM Usuarios u INNER JOIN Email e on u.CodUsuario=e.CodUsuario WHERE Email=? AND Fim IS NULL AND Senha=? AND Estado='Activo'";
     else
-      $sql = "SELECT CodUsuario FROM Email INNER JOIN Transportes on CodUsuario=CodGerente WHERE Email=? AND Matricula=?";
-	
+      $sql = "SELECT CodUsuario FROM Usuarios u INNER JOIN Email e INNER JOIN Transportes t on e.CodUsuario=t.CodGerente WHERE Email=? AND Matricula=? AND Estado='Activo'";
 
     $sql = mysqli_prepare($dbc,$sql);
     $sql -> bind_param("ss",$email,$token);
@@ -96,9 +95,9 @@ function generico($dbc,$col,$tab,$con,$t,$par) {
 	  var user = <?php echo json_encode(generico($dbc,'*','Usuarios','CodUsuario=?','i',$codUsuario)); ?>;
 	  var email = <?php echo json_encode(generico($dbc,'Email','Email','CodUsuario=? AND Fim IS NULL','i',$codUsuario)[0]['Email']); ?>;
 	  if (metodo == 0)
-	      var transports = <?php echo json_encode(generico($dbc,'*','Transportes','CodGerente!=?','i',0)); ?>;
+	      var transports = <?php echo json_encode(generico($dbc,'*','Transportes t INNER JOIN Rotas r ON t.CodRota=r.CodRota','WHERE CodGerente!=?','i',0)); ?>;
 	  else
-	    var transports = <?php echo json_encode(generico($dbc,'*','Transportes','Matricula=?','s',$token)); ?>;
+	    var transports = <?php echo json_encode(generico($dbc,'*','Transportes t INNER JOIN Rotas r ON t.CodRota=r.CodRota','Matricula=?','s',$token)); ?>;
 	  var cores = <?php echo json_encode(generico($dbc,'*','Cores','CodUsuario=?','i',$codUsuario)); ?>;
   	  iniciarUsuario();
 	}
@@ -131,7 +130,8 @@ function generico($dbc,$col,$tab,$con,$t,$par) {
 	          cor: cor,
 	          pontos: [],
 	          atual: 0,
-	          destino: "",
+	          tituloRota: linhas.Titulo,
+		  estado: linhas.Estado,
 	        });
 	    });
 	    reencaminharUsuario();

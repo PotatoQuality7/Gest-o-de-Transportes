@@ -18,7 +18,8 @@
 	  cor: "",
 	  pontos: [],
 	  atual: 0,
-	  destino: "",
+	  tituloRota: "",
+	  estado: "",
 	}];
 
 	var admin = {
